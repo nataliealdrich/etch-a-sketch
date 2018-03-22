@@ -17,9 +17,12 @@
 	let divArray = []
 	const resetButton = document.querySelector('button')
 	
-	function divLayout() {
-		for (let i = 1; i < 17; i++) {
+	function firstLayout() {
+		container.setAttribute('style', 'display: grid; grid-template-columns: repeat(16, 1fr);')
+
+		for (let i = 1; i < 257; i++) {
 			let gridDiv = document.createElement('div'); //must be created within the for loop or else the same div will just be created over and over again replacing itself
+			gridDiv.setAttribute('style', 'border: 1px solid black;')
 			gridDiv.setAttribute('class', 'grid-div');
 			gridDiv.setAttribute('id', 'div-' + i);
 			container.appendChild(gridDiv);
@@ -28,7 +31,7 @@
 		}
 	}
 
-	divLayout();
+	firstLayout();
 
 	divArray.forEach(function(div) {
 		div.addEventListener("mouseenter", function(){
@@ -38,6 +41,8 @@
 
 
 	function recolor() {
+		let newBoard = prompt("How many rows and columns of squares would you like?")
+
 		for(var i=0; i<divArray.length; i++) {
 
 			document.getElementById("div-" + (i + 1)).setAttribute('style', 'background-color: white;')
