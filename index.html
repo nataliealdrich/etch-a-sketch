@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Etch-a-Sketch</title>
+	<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+<div id="controls">
+<h1>Etch-a-Sketch</h1>	
+<button>Reset</button>	
+</div>	
+<div id="grid-container">
+
+</div>	
+<script type="text/javascript">
+	const container = document.querySelector("#grid-container")
+	let divArray = []
+	
+	function divLayout() {
+		for (let i = 1; i < 17; i++) {
+			let gridDiv = document.createElement('div'); //must be created within the for loop or else the same div will just be created over and over again replacing itself
+			gridDiv.setAttribute('class', 'grid-div');
+			gridDiv.setAttribute('id', 'div-' + i);
+			container.appendChild(gridDiv);
+			divArray.push(gridDiv);
+
+		}
+	}
+
+	divLayout();
+
+	divArray.forEach(function(div) {
+		div.addEventListener("mouseenter", function(){
+			this.setAttribute('style','background-color: black; border: 1px solid white;')
+		})
+	})
+
+	
+
+</script>
+</body>
+</html>
