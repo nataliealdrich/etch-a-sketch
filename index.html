@@ -7,7 +7,7 @@
 <body>
 <div id="controls">
 <h1>Etch-a-Sketch</h1>	
-<button>Reset</button>	
+<button onclick="recolor()">Reset</button>	
 </div>	
 <div id="grid-container">
 
@@ -15,6 +15,7 @@
 <script type="text/javascript">
 	const container = document.querySelector("#grid-container")
 	let divArray = []
+	const resetButton = document.querySelector('button')
 	
 	function divLayout() {
 		for (let i = 1; i < 17; i++) {
@@ -35,7 +36,13 @@
 		})
 	})
 
-	
+
+	function recolor() {
+		for(var i=0; i<divArray.length; i++) {
+
+			document.getElementById("div-" + (i + 1)).setAttribute('style', 'background-color: white;')
+		}
+	}
 
 </script>
 </body>
