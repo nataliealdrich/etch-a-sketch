@@ -1,31 +1,23 @@
 h1 {
-	position: absolute;
-	left: 750px;
+	text-align: center;
 	top: 0;
 }
 
 button {
-	position: absolute;
-	
-	left: 750px;
-	top: 70px;
+	position: relative;
+	display: inline-block;
 }
 
 #grid-container {
 	
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 50px;
 	/*width: 960px;
 	height: 960px;*/ /* set dimensions for grid. */
 	
 }
 
-/*.grid-div {
-	
-	background-color: white;
-	width: 6%;
-	height: 700px;
-
-	
-	
-}*/
+#button-list{
+	margin: auto;
+	width: 150px;
+}

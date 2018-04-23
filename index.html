@@ -6,8 +6,12 @@
 </head>
 <body>
 <div id="controls">
-	<h1>Etch-a-Sketch</h1>	
-	<button onclick="recolor()">Reset</button>	
+	<h1>Etch-a-Sketch</h1>
+	<div id="button-list">	
+		<button onclick="reset()">Reset</button>
+		<button onclick="monochrome(true)">Black</button>
+		<button onclick="colors(false)">Colors</button>	
+	</div>
 </div>	
 <div id="grid-container">
 
@@ -35,12 +39,12 @@
 
 	
 
-	function recolor() {
+	function reset() {
 		
 		container.innerHTML = '';
 		divArray.length = 0;
 		let newBoard = prompt("How many rows and columns of squares would you like?");
-		container.setAttribute('style', `grid-template-columns: repeat(${newBoard}, auto); display: grid; height:960px; width:960px;`);
+		container.setAttribute('style', `grid-template-columns: repeat(${newBoard}, auto); display: grid; height:960px; width:960px;`); //WHOLE THING IS LITERAL TEMPLATE IN CSS
 		
 		for (let i = 0; i < newBoard * newBoard + 1; i++) {
 			let gridDiv = document.createElement('div'); 
@@ -55,21 +59,43 @@
 		divArray.forEach(function(div) {
         div.addEventListener("mouseenter", function(){
             this.setAttribute('style','background-color: black;')
+
         })
     }) /* This needed to be included because the eventlisteners are deleted when you clear the container. It all must be added back.*/
 
 		for(let i=0; i<divArray.length; i++) {
 
 			document.getElementById("div-" + (i + 1)).setAttribute('style', 'background-color: white; border: 1px solid black;')
+
 		}
 		
 	}
-
-	divArray.forEach(function(div) {
-		div.addEventListener("mouseenter", function(){
+	function monochrome(){
+		divArray.forEach(function(div) {
+		div.addEventListener("mouseenter", function(e){
 			this.setAttribute('style','background-color: black;')
+
 		})
 	})
+
+	}
+
+	function colors(){
+		divArray.forEach(function(div) {
+		div.addEventListener("mouseenter", function(e){
+			 e.target.style.backgroundColor = '#'+Math.random().toString(16).substr(-6);
+
+		})
+	})
+	}
+
+	divArray.forEach(function(div) {
+		div.addEventListener("mouseenter", function(e){
+			this.setAttribute('style','background-color: black;')
+
+		})
+	})
+	
 
 </script>
 </body>
