@@ -6,8 +6,8 @@
 </head>
 <body>
 <div id="controls">
-<h1>Etch-a-Sketch</h1>	
-<button onclick="recolor()">Reset</button>	
+	<h1>Etch-a-Sketch</h1>	
+	<button onclick="recolor()">Reset</button>	
 </div>	
 <div id="grid-container">
 
@@ -18,7 +18,7 @@
 	const resetButton = document.querySelector('button')
 	
 	function firstLayout() {
-		container.setAttribute('style', 'display: grid; grid-template-columns: repeat(16, 1fr);')
+		container.setAttribute('style', 'height: 960px; width: 960px; display: grid; grid-template-columns: repeat(16, auto);')
 
 		for (let i = 1; i < 257; i++) {
 			let gridDiv = document.createElement('div'); //must be created within the for loop or else the same div will just be created over and over again replacing itself
@@ -33,21 +33,43 @@
 
 	firstLayout();
 
-	divArray.forEach(function(div) {
-		div.addEventListener("mouseenter", function(){
-			this.setAttribute('style','background-color: black; border: 1px solid white;')
-		})
-	})
-
+	
 
 	function recolor() {
-		let newBoard = prompt("How many rows and columns of squares would you like?")
+		
+		container.innerHTML = '';
+		divArray.length = 0;
+		let newBoard = prompt("How many rows and columns of squares would you like?");
+		container.setAttribute('style', `grid-template-columns: repeat(${newBoard}, auto); display: grid; height:960px; width:960px;`);
+		
+		for (let i = 0; i < newBoard * newBoard + 1; i++) {
+			let gridDiv = document.createElement('div'); 
+			gridDiv.setAttribute('style', 'border: 1px solid black;');
+			gridDiv.setAttribute('class', 'grid-div');
+			gridDiv.setAttribute('id', 'div-' + i);
+			container.appendChild(gridDiv);
+			divArray.push(gridDiv);
 
-		for(var i=0; i<divArray.length; i++) {
+		};
 
-			document.getElementById("div-" + (i + 1)).setAttribute('style', 'background-color: white;')
+		divArray.forEach(function(div) {
+        div.addEventListener("mouseenter", function(){
+            this.setAttribute('style','background-color: black;')
+        })
+    }) /* This needed to be included because the eventlisteners are deleted when you clear the container. It all must be added back.*/
+
+		for(let i=0; i<divArray.length; i++) {
+
+			document.getElementById("div-" + (i + 1)).setAttribute('style', 'background-color: white; border: 1px solid black;')
 		}
+		
 	}
+
+	divArray.forEach(function(div) {
+		div.addEventListener("mouseenter", function(){
+			this.setAttribute('style','background-color: black;')
+		})
+	})
 
 </script>
 </body>
